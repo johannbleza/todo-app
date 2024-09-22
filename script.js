@@ -13,7 +13,7 @@ let savedList = JSON.parse(localStorage.getItem("saved list")) || [];
 // Add Task
 inputTaskBtn.addEventListener("click", () => {
   if (inputTask.value.length > 0) {
-    savedList.push({ task: newTask, done: false });
+    savedList.push({ task: newTask, done: false, id: savedList.length + 1 });
     displayTask();
     inputTask.value = "";
   }
@@ -38,7 +38,7 @@ const displayTask = () => {
     let taskText = li.children[0].children[1];
     let remove = li.children[1];
 
-    remove.addEventListener("click", () => removedFromList(taskText));
+    remove.addEventListener("click", () => removedFromList(item.id));
 
     // checkbox.checked = item.done ? true : false;
     taskText.style.textDecoration = item.done ? "line-through" : "";
@@ -61,8 +61,8 @@ const displayTask = () => {
   }
 };
 
-const removedFromList = (remove) => {
-  savedList = savedList.filter((item) => item.task !== remove.innerHTML);
+const removedFromList = (removeId) => {
+  savedList = savedList.filter((item) => item.id !== removeId);
   updateLocalStorage();
   displayTask();
 
