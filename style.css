@@ -48,6 +48,7 @@ h1 {
   color: #fff;
   cursor: pointer;
   transition: all ease 0.2s;
+  font-size: 16px;
 }
 
 .inputTaskBtn:hover {
