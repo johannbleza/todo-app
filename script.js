@@ -19,6 +19,16 @@ inputTaskBtn.addEventListener("click", () => {
   }
 });
 
+inputTask.addEventListener("keypress", (e) => {
+  if (e.key === "Enter") {
+    if (inputTask.value.length > 0) {
+      savedList.push({ task: newTask, done: false, id: savedList.length + 1 });
+      displayTask();
+      inputTask.value = "";
+    }
+  }
+});
+
 // Display Tasks
 const displayTask = () => {
   taskList.innerHTML = "";
@@ -56,7 +66,7 @@ const displayTask = () => {
     updateLocalStorage();
   });
 
-  if (savedList.length > 0) {
+  if (savedList.length > 1) {
     clear.style.display = "flex";
   }
 };
